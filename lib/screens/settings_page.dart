@@ -1468,11 +1468,18 @@ class LogoutPage extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Logout Successfully'),
+                      backgroundColor: Colors.redAccent,
                     ),
                   );
+                  Future.delayed(const Duration(seconds: 5), () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    );
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                   padding:

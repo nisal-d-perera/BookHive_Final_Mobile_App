@@ -234,10 +234,19 @@ class _LoginScreenState extends State<LoginScreen> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setInt('user_id', user.id);
 
-      Navigator.pushReplacement(
-        context, 
-        MaterialPageRoute(builder: (context) => const MainScreen(index: 2)),
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login Successfully'),
+          backgroundColor: Colors.green,
+        ),
       );
+
+      Future.delayed(const Duration(seconds: 5), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MainScreen(index: 2)),
+        );
+      });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
